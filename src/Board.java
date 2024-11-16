@@ -1,9 +1,10 @@
 
 public class Board {
     public Board() {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                this.board[i][j] = " ";
+        int k = 1;
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 3; col++) {
+                board[row][col] =Integer.toString(k++);
             }
         }
     }
@@ -24,6 +25,9 @@ public class Board {
 
     }
 
+    public void set (int index, String marker){
+        board[]
+    }
     private String[][] board = new String[3][3];
 
 

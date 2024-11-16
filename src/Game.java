@@ -1,9 +1,13 @@
 import java.util.Scanner;
 
 public class Game {
+
+    private String namePlayer1="dan";
+    private String namePlayer2 ="jos";
+
     public void start() {
         System.out.println("Welcome to TicTacToe!");
-        new Board().printBoard();
+
         System.out.println("Do you want to play (Y/N)?");
         Scanner scanner = new Scanner(System.in);
         while (true) {
@@ -21,12 +25,19 @@ public class Game {
         }
         System.out.println("Write Player 1 name (X):");
 
-        String namePlayer1 = scanner.nextLine();
+        namePlayer1 = scanner.nextLine();
         System.out.println("Write Player 2 name (O):");
-        String namePlayer2 = scanner.nextLine();
+        namePlayer2 = scanner.nextLine();
 
 
     }
 
+    public void play() {
+        System.out.println(namePlayer1 + " to play, pick a number:");
+        new Board().printBoard();
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.next();
+
+    }
 
 }
