@@ -26,11 +26,18 @@ public class Board {
     }
 
     public void set (int index, String marker){
-        board[]
+        index--;
+        board[index/3][index%3] = marker;
     }
     private String[][] board = new String[3][3];
 
-
+    public Boolean availableNumber(int index){
+        index--;
+        if (board[index/3][index%3] == "X" || board[index/3][index%3] == "O"){
+            return false;
+        }
+        else return true;
+    }
 }
 
 
