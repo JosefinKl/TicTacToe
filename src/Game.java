@@ -30,13 +30,18 @@ public class Game {
 
         System.out.println("Write Player 2 name (O):");
         namePlayer2 = scanner.nextLine();
+        play(0,0, namePlayer1, namePlayer2);
     }
 
-    public void play(int numberOfWinPlayer1, int numberOfWinPlayer2) {
+    public void play(int numberOfWinPlayer1, int numberOfWinPlayer2, String player1, String player2) {
         Board board = new Board();
+        this.namePlayer1 = player1;
+        this.namePlayer2 = player2;
         player = namePlayer1;
         this.numberOfWinPlayer1= numberOfWinPlayer1;
         this.numberOfWinPlayer2 = numberOfWinPlayer2;
+        continuePlay = true;
+
 
         while (continuePlay) {
             if (player == namePlayer1) {
@@ -49,15 +54,18 @@ public class Game {
                         board.set(Integer.parseInt(input), "X");
                         board.endGame();
 
-                        board.printBoard();
 
                         if (board.getResult() == "Win") {
                             System.out.println(namePlayer1 + " " + board.getResult());
                             numberOfWinPlayer1++;
                             System.out.println(namePlayer1 + " has won " + numberOfWinPlayer1 + " time(s).");
+                            if (numberOfWinPlayer1 == 3){
+                                System.out.println(namePlayer1 + " came first to 3 won games!");
+                                break;
+                            }
                             continuePlay = false;
 
-                            new Game().play(numberOfWinPlayer1, numberOfWinPlayer2);
+                            new Game().play(numberOfWinPlayer1, numberOfWinPlayer2, namePlayer1, namePlayer2);
                         } else if (board.getResult() == "Tie") {
                             System.out.println("Tie");
                             continuePlay = false;
@@ -83,14 +91,18 @@ public class Game {
                     if (Integer.parseInt(input) >= 1 && Integer.parseInt(input) <= 9) {
                         board.set(Integer.parseInt(input), "O");
                         board.endGame();
-                        board.printBoard();
+
 
                         if (board.getResult() == "Win") {
                             System.out.println(namePlayer2 + " " + board.getResult());
                             numberOfWinPlayer2++;
                             System.out.println(namePlayer2 + " has won " + numberOfWinPlayer2 + " time(s).");
+                            if (numberOfWinPlayer2 == 3){
+                                System.out.println(namePlayer2 + " came first to 3 won games!");
+                                break;
+                            }
                             continuePlay = false;
-                            new Game().play(numberOfWinPlayer1, numberOfWinPlayer2);
+                            new Game().play(numberOfWinPlayer1, numberOfWinPlayer2, namePlayer1, namePlayer2);
                         }
                         else if (board.getResult() == "Tie") {
                             System.out.println("Tie");
