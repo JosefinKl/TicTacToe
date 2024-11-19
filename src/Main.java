@@ -3,8 +3,6 @@ public class Main {
 
 
         new Game().start();
-        //new Game().play(0,0);
-
 
     }
 
