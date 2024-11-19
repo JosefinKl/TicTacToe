@@ -66,6 +66,7 @@ public class Game {
         while (continuePlay) {
             if (player == namePlayer1) {
                 System.out.println(namePlayer1 + " to play, pick a number:");
+
                 board.printBoard();
                 Scanner scanner = new Scanner(System.in);
                 String input = scanner.next();
@@ -94,29 +95,30 @@ public class Game {
                         player = namePlayer2;
 
                     } else {
-                        System.out.println("pick an available number:");
+                        System.out.println("\u001B[31mpick an available number!\u001B[0m"); //Red text to say that human chose an invalid number.
                     }
 
                 }
                 else {
-                    System.out.println("pick an available number:");
+                    System.out.println("\u001B[31mpick an available number!\u001B[0m");  //Red text to say that human chose an invalid number.
                 }
             }
 
             else if (player == namePlayer2) {
                 String input;
 
+                //Choose number for human player
                 if(namePlayer2 != "Computer") {
                     System.out.println(namePlayer2 + " to play, pick a number:");
                     board.printBoard();
                     Scanner scanner = new Scanner(System.in);
                     input = scanner.next();
                 }
+                //Random number for computer
                 else {
                     Random rand = new Random();
                     Integer n = rand.nextInt(9);
                     input = Integer.toString(n);
-                    System.out.println(input);
 
                 }
                 if (Integer.parseInt(input) > 0 && Integer.parseInt(input) < 10 ) {  //To handle invalid options.
@@ -142,13 +144,13 @@ public class Game {
 
                     } else {
                         if(namePlayer2 != "Computer") {
-                            System.out.println("pick an available number:");
+                            System.out.println("\u001B[31mpick an available number!\u001B[0m");  //Red text to say that human chose an invalid number.
                         }
                     }
                 }
                 else {
                     if(namePlayer2 != "Computer") {
-                        System.out.println("pick an available number:");
+                        System.out.println("\u001B[31mpick an available number!\u001B[0m");  //Red text to say that human chose an invalid number.
                     }
                 }
             }

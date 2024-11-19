@@ -24,6 +24,7 @@ public class Board {
             System.out.println();
             System.out.println("+---+---+---+");
         }
+
     }
 
     //Set marker to board
@@ -48,6 +49,7 @@ public class Board {
     public String getResult() {
         return result;
     }
+
 
     //Check if someone has won.
     public void endGame(){
