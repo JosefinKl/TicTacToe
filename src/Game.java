@@ -71,37 +71,41 @@ public class Game {
                 Scanner scanner = new Scanner(System.in);
                 String input = scanner.next();
 
-                if (Integer.parseInt(input) > 0 && Integer.parseInt(input) < 10 ) {  //To handle invalid options.
-                    if (board.availableNumber(Integer.parseInt(input))) {
-                        board.set(Integer.parseInt(input), "X");
-                        board.endGame();
+                try {
+
+                    if (Integer.parseInt(input) > 0 && Integer.parseInt(input) < 10) {  //To handle invalid options.
+                        if (board.availableNumber(Integer.parseInt(input))) {
+                            board.set(Integer.parseInt(input), "X");
+                            board.endGame();
 
 
-                        if (board.getResult() == "Win") {
-                            System.out.println(namePlayer1 + " " + board.getResult());
-                            numberOfWinPlayer1++;
-                            System.out.println(namePlayer1 + " has won " + numberOfWinPlayer1 + " time(s).");
-                            if (numberOfWinPlayer1 == 3) {
-                                System.out.println(namePlayer1 + " came first to 3 won games!");
-                                break;
+                            if (board.getResult() == "Win") {
+                                System.out.println(namePlayer1 + " " + board.getResult());
+                                numberOfWinPlayer1++;
+                                System.out.println(namePlayer1 + " has won " + numberOfWinPlayer1 + " time(s).");
+                                if (numberOfWinPlayer1 == 3) {
+                                    System.out.println(namePlayer1 + " came first to 3 won games!");
+                                    break;
+                                }
+                                continuePlay = false;
+
+                                new Game().play(numberOfWinPlayer1, numberOfWinPlayer2, namePlayer1, namePlayer2);
+                            } else if (board.getResult() == "Tie") {
+                                System.out.println("Tie");
+                                continuePlay = false;
                             }
-                            continuePlay = false;
+                            player = namePlayer2;
 
-                            new Game().play(numberOfWinPlayer1, numberOfWinPlayer2, namePlayer1, namePlayer2);
-                        } else if (board.getResult() == "Tie") {
-                            System.out.println("Tie");
-                            continuePlay = false;
+                        } else {
+                            System.out.println("\u001B[31mpick an available number!\u001B[0m"); //Red text to say that human chose an invalid number.
                         }
-                        player = namePlayer2;
 
                     } else {
-                        System.out.println("\u001B[31mpick an available number!\u001B[0m"); //Red text to say that human chose an invalid number.
+                        System.out.println("\u001B[31mpick an available number!\u001B[0m");  //Red text to say that human chose an invalid number.
                     }
-
-                }
-                else {
-                    System.out.println("\u001B[31mpick an available number!\u001B[0m");  //Red text to say that human chose an invalid number.
-                }
+                }catch (NumberFormatException e) {
+                System.out.println("\u001B[31mpick an available number!\u001B[0m");
+            }
             }
 
             else if (player == namePlayer2) {
@@ -121,37 +125,40 @@ public class Game {
                     input = Integer.toString(n);
 
                 }
-                if (Integer.parseInt(input) > 0 && Integer.parseInt(input) < 10 ) {  //To handle invalid options.
-                    if (board.availableNumber(Integer.parseInt(input))) {
-                        board.set(Integer.parseInt(input), "O");
-                        board.endGame();
+                try {
+                    if (Integer.parseInt(input) > 0 && Integer.parseInt(input) < 10) {  //To handle invalid options.
+                        if (board.availableNumber(Integer.parseInt(input))) {
+                            board.set(Integer.parseInt(input), "O");
+                            board.endGame();
 
 
-                        if (board.getResult() == "Win") {
-                            System.out.println(namePlayer2 + " " + board.getResult());
-                            numberOfWinPlayer2++;
-                            System.out.println(namePlayer2 + " has won " + numberOfWinPlayer2 + " time(s).");
-                            if (numberOfWinPlayer2 == 3) {
-                                System.out.println(namePlayer2 + " came first to 3 won games!");
-                                break;
+                            if (board.getResult() == "Win") {
+                                System.out.println(namePlayer2 + " " + board.getResult());
+                                numberOfWinPlayer2++;
+                                System.out.println(namePlayer2 + " has won " + numberOfWinPlayer2 + " time(s).");
+                                if (numberOfWinPlayer2 == 3) {
+                                    System.out.println(namePlayer2 + " came first to 3 won games!");
+                                    break;
+                                }
+                                continuePlay = false;
+                                new Game().play(numberOfWinPlayer1, numberOfWinPlayer2, namePlayer1, namePlayer2);
+                            } else if (board.getResult() == "Tie") {
+                                System.out.println("Tie");
                             }
-                            continuePlay = false;
-                            new Game().play(numberOfWinPlayer1, numberOfWinPlayer2, namePlayer1, namePlayer2);
-                        } else if (board.getResult() == "Tie") {
-                            System.out.println("Tie");
-                        }
-                        player = namePlayer1;
+                            player = namePlayer1;
 
+                        } else {
+                            if (namePlayer2 != "Computer") {
+                                System.out.println("\u001B[31mpick an available number!\u001B[0m");  //Red text to say that human chose an invalid number.
+                            }
+                        }
                     } else {
-                        if(namePlayer2 != "Computer") {
+                        if (namePlayer2 != "Computer") {
                             System.out.println("\u001B[31mpick an available number!\u001B[0m");  //Red text to say that human chose an invalid number.
                         }
                     }
-                }
-                else {
-                    if(namePlayer2 != "Computer") {
-                        System.out.println("\u001B[31mpick an available number!\u001B[0m");  //Red text to say that human chose an invalid number.
-                    }
+                }catch (NumberFormatException e) {
+                    System.out.println("\u001B[31mpick an available number!\u001B[0m");
                 }
             }
 
